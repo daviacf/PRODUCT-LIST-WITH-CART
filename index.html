@@ -4,10 +4,74 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css">
     <title>Vite + TS</title>
   </head>
+  
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <div class="container">
+  
+      <main class="product-section">
+        <h1>Desserts</h1>
+        <ul id="menu"></ul>
+      </main>
+  
+      <aside id="cartBlock">
+      </aside>
+    </div>
+  
+  
+    <script type="module">
+      import Product from "./src/Produtos.ts";
+      import Cart from "./src/Carrinho.ts";
+  
+      let cartContainer = null;
+  
+      async function fetchDesserts() {
+        const response = await fetch("./data.json");
+        const dessertsJson = await response.json();
+  
+        return dessertsJson.map(
+          (dessertsData, index) =>
+            new Product(
+              index,
+              dessertsData.name,
+              dessertsData.price,
+              dessertsData.image.desktop,
+              dessertsData.category
+            )
+        );
+      }
+  
+      async function initialize() {
+        const desserts = await fetchDesserts();
+        const menu = document.getElementById("menu");
+        cartContainer = new Cart(desserts);
+  
+        desserts.forEach((desserts) => {
+          const li = document.createElement("li");
+          try {
+            li.appendChild(desserts.render(cartContainer));
+            menu.appendChild(li);
+          } catch (error) {
+            console.error("Error rendering dessert:", error);
+          }
+        });
+  
+        const cart = document.getElementById("cartBlock");
+        cart.appendChild(cartContainer.render());
+      }
+  
+      initialize();
+    </script>
+  
+    <footer>
+      <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+        Coded by 
+        <a href="https://www.github.com/daviacf">Davi Filho</a>
+      </div>
+    </footer>
   </body>
-</html>
+  
+  </html>

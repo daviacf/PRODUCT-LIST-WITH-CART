@@ -1,96 +1,201 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+* {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+footer{
+  margin-top: 10px;
+  text-align: center;
+  background-color: rgb(248, 133, 39);
+  padding: 10px;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  background-color: rgb(246, 184, 114);
+  color: #4b1e1e;
+  
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  text-align: left;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #9b1e3e;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* desserts LIST */
+#menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 24px;
+  padding: 0;
+  list-style: none;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
-}
-
-.card {
-  padding: 2em;
+/* CARD MENU */
+#menu li {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
 }
 
-.read-the-docs {
-  color: #888;
+#menu li:hover {
+  transform: scale(1.02);
+}
+
+#menu li img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+#menu li h2 {
+  font-size: 1.2rem;
+  color: #5e3c3c;
+}
+
+#menu li p {
+  margin: 6px 0;
+  color: #a36f5b;
+}
+
+#menu li span {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #8d3e3e;
 }
 
 button {
+  padding: 8px 16px;
+  margin: 4px;
+  border: none;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background-color: #ff9e9e;
+  color: #fff;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
+button:hover {
+  background-color: #e87a7a;
+}
+
+.quantity {
+  margin-top: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #6b3c3c;
+}
+
+/* CART BLOCK */
+#cartBlock {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: lightgray;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#cartBlock h2 {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  color: lightsalmon;
+}
+
+#cartBlock .desserts {
+  border-top: 1px solid lightgrey;
+  padding: 12px 0;
+}
+
+#cartBlock .desserts:first-child {
+  border-top: none;
+}
+
+/* Responsivity */
+@media (max-width: 600px) {
   button {
-    background-color: #f9f9f9;
+      width: 100%;
   }
+
+  #menu {
+      grid-template-columns: 1fr;
+  }
+}
+
+.container {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.desserts-section {
+  flex: 3;
+}
+
+#cartBlock {
+  flex: 1;
+  position: sticky;
+  top: 20px;
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+  min-width: 300px;
+}
+
+#cartBlock h2 {
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+  color: #a74e4e;
+}
+
+#cartBlock .desserts {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+#cartBlock .desserts:last-child {
+  border-bottom: none;
+}
+
+#cartBlock .desserts span {
+  display: block;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.cart-total {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 16px;
+  color: #2e2e2e;
+}
+
+.confirm-order {
+  margin-top: 20px;
+  padding: 12px;
+  width: 100%;
+  background-color: #a93f2d;
+  color: lightgrey;
+  border: none;
+  border-radius: 24px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.confirm-order:hover {
+  background-color: #912f22;
 }
